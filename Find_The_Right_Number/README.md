@@ -14,6 +14,8 @@ Pascal challenging you to find the number it has chosen
 
 - [x] Handle exceptions
 
+- [x] Add replay feature
+
 ---
 
 *Produced by Abel Laroussi*
