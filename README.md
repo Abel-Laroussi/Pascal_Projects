@@ -3,11 +3,15 @@ Multiple Pascal projets to discover this language
 
 ---
 
-- [ ] Hello World
+### Hello World
 
-- [ ] Find the right number
+A simple Pascal code asking your Name and waving you !
 
-- [ ] The Hangman's Game
+- [x] Declare variables / const
+
+- [x] Asking the username
+
+- [x] Display the "Hello" message
 
 ---
 
