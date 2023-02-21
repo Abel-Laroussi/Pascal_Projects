@@ -10,7 +10,7 @@ Pascal challenging you to find the number it has chosen
 
 - [x] Add number of attempts
 
-- [ ] Generate random number in a function
+- [x] Generate random number in a function
 
 - [ ] Handle exceptions
 
