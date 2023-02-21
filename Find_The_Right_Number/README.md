@@ -4,7 +4,7 @@ Pascal challenging you to find the number it has chosen
 
 - [x] Declare variables / const
 
-- [ ] Main Loop
+- [x] Main Loop
 
 - [ ] Display "more" or "less" messages
 
