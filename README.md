@@ -9,9 +9,9 @@ A simple Pascal code asking your Name and waving you !
 
 - [x] Declare variables / const
 
-- [ ] Asking the username
+- [x] Asking the username
 
-- [ ] Display the "Hello" message
+- [x] Display the "Hello" message
 
 ---
 
