@@ -1,4 +1,4 @@
-### Find The Right Number
+# Find The Right Number
 
 Pascal challenging you to find the number it has chosen
 
