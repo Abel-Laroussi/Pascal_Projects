@@ -5,7 +5,7 @@ Multiple Pascal projets to discover this language
 
 - [x] Hello World
 
-- [ ] Find the right number
+- [ ] **Find the right number**
 
 - [ ] The Hangman's Game
 
