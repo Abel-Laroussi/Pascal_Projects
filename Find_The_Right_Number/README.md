@@ -6,7 +6,9 @@ Pascal challenging you to find the number it has chosen
 
 - [x] Main Loop
 
-- [ ] Display "more" or "less" messages
+- [x] Display "more" or "less" messages
+
+- [x] Add number of attempts
 
 - [ ] Generate random number in a function
 
