@@ -30,16 +30,21 @@ begin                                                           { Main loop begi
     repeat
         nb_attempt := nb_attempt + 1;
         write('Your proposition = ');
+        {$I-}                                                   { Check if the input is an integer }
         readLn(user_guess);
-
-        if to_guess <> user_guess then                          { Check if user proposition is greater or less than the number to find}
-        begin
-            if to_guess > user_guess then
-                writeLn(more)
-            else
-                writeLn(less);
+        {$I+}
+        if ioresult <> 0 then
+            writeLn('The input is not an integer !')
+        else
+        begin        
+            if to_guess <> user_guess then                          { Check if user proposition is greater or less than the number to find }
+            begin
+                if to_guess > user_guess then
+                    writeLn(more)
+                else
+                    writeLn(less);
+            end;
         end;
-            
         writeLn('====================');                        { Equivalent to \n }
 
     until (to_guess = user_guess);

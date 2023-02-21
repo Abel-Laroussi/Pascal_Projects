@@ -12,7 +12,7 @@ Pascal challenging you to find the number it has chosen
 
 - [x] Generate random number in a function
 
-- [ ] Handle exceptions
+- [x] Handle exceptions
 
 ---
 
