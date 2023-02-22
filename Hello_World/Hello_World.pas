@@ -9,5 +9,6 @@ begin
     write('=> ');
     readLn(username);                               { Assign username variable a value }
     writeLn();                                      { Similar to \n }
-    writeLn(msg, username, ' ! :)')                 { Display msg & username variables and ' ! :)' message }
+    writeLn(msg, username, ' ! :)');                { Display msg & username variables and ' ! :)' message }
+    readLn                                          { PAUSE }
 end.
