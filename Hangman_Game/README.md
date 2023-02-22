@@ -4,9 +4,13 @@
 
 - [x] Assign values into arrays
 
-- [ ] Turn word into a sequence of hidden letter
+- [x] Turn word into a sequence of hidden letter
 
-- [ ] ...
+- [ ] Set number of letters left
+
+- [ ] Check if letter wrote by user is in the word
+
+- [ ] Handle exception
 
 ---
 
