@@ -12,6 +12,8 @@ var
     keep_playing: boolean;
     character_proposition: char;
     lives: integer;
+    letters_used: string;
+    index_letter_used: integer;
 
 const 
     MAX_WORDS = 20;
@@ -46,16 +48,34 @@ procedure displayHiddenWord(word_in_game: string);
         writeLn();
     end;
 
-procedure checkLetter(c: char; word_to_guess: string; var lives: integer; var word_in_game: string);
+procedure checkLetter(c: char; word_to_guess: string; var lives: integer; var word_in_game: string; var letters_used: string; var index_letter_used: integer);
     var 
         word_size : integer;
-        found : boolean;
+        found, already_used : boolean;
         character: char;
 
     begin
         character := LowerCase(c);
-        if( (character < 'a') or (character > 'z')) then writeLn('This is not a letter !')
+
+        already_used := FALSE;
+        i := 1;
+        while(i <= Length(letters_used)) do
+        begin
+            if(letters_used[i] = c) then already_used := TRUE;
+            i := i+1;
+        end;
+        
+        if(already_used) then 
+            begin
+                writeLn('---------------------------------------');
+                writeLn('This letter has already been proposed !');
+                writeLn('---------------------------------------');
+            end
         else
+        begin
+            if( (character < 'a') or (character > 'z')) then 
+                writeLn('This is not a letter !')
+            else
             begin
                 found := false;
                 word_size := Length(word_to_guess);
@@ -67,11 +87,14 @@ procedure checkLetter(c: char; word_to_guess: string; var lives: integer; var wo
                         word_in_game[i] := character;
                         found := true;
                     end;
-                    i := i+1;
+                        i := i+1;
                 end;
 
                 if not found then lives := lives - 1;
+                letters_used[index_letter_used] := character;
+                index_letter_used := index_letter_used + 1;
             end;
+        end;
     end;
 
 function checkWin(word_in_game: string) : boolean;
@@ -86,8 +109,11 @@ function checkWin(word_in_game: string) : boolean;
 
 { MAIN LOOP }
 begin
+    setlength(letters_used, 27);
+    index_letter_used := 1;
     keep_playing := TRUE;
     lives := NB_TRY;
+
     initArray('word_list.txt', nb_words, words);
     Randomize();
 {    for i:=0 to nb_words-1 do
@@ -99,7 +125,7 @@ begin
     word_in_game := word_to_guess;
     for i:=1 to (Length(word_to_guess)) do
         word_in_game[i] := '_';
-
+    writeLn('============================');
     writeLn('Word loaded');
     close(f);
     { DEBUG writeLn('Word to guess : ', word_to_guess); }
@@ -109,7 +135,7 @@ begin
         displayHiddenWord(word_in_game);
         write('Your proposition : ');
         readLn(character_proposition);
-        checkLetter(character_proposition, word_to_guess, lives, word_in_game);
+        checkLetter(character_proposition, word_to_guess, lives, word_in_game, letters_used, index_letter_used);
         writeLn();
         writeLn('You have ', lives, ' lives left.');
         keep_playing := (lives > 0) and (not checkWin(word_in_game));
