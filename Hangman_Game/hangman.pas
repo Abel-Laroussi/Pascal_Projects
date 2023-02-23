@@ -36,7 +36,7 @@ procedure displayHiddenWord(word_in_game: string);
     begin
         word_size := Length(word_in_game);
 
-        for i:=0 to word_size-1 do
+        for i:=1 to word_size do
         begin
             write(word_in_game[i]);
             write(' ');
@@ -46,25 +46,24 @@ procedure displayHiddenWord(word_in_game: string);
 
 procedure checkLetter(c: char; word_to_guess: string; var keep_playing: boolean; var lives: integer; var word_in_game: string);
     var word_size : integer;
+    var found : boolean;
     begin
+        found := false;
         word_size := Length(word_to_guess);
-        i := 0;
-        while (i <= word_size) and (word_to_guess[i] <> c) do
+        i := 1;
+        while (i <= word_size) do
+        begin
+            if word_to_guess[i] = c then
+            begin
+                word_in_game[i] := c;
+                found := true;
+            end;
             i := i+1;
-        
-        if (i > word_size) then
-        begin
-            writeLn('The letter ', c, ' is not in the word to guess.');
-            lives := lives - 1;
-        end
-        else
-        begin
-            writeLn('The letter ', c, ' is in the word to guess.');
-            if(word_in_game[i-1] = '_') then
-                word_in_game[i-1] := c
         end;
 
-        if(lives < 1) then keep_playing := false;
+        if not found then lives := lives - 1;
+
+        keep_playing := (lives > 0);
     end;
 
 begin
@@ -78,11 +77,12 @@ begin
     i := random(nb_words);
     word_to_guess := words[i];
 
-    for i:=0 to Length(word_to_guess)-1 do
+    word_in_game := word_to_guess;
+    for i:=1 to (Length(word_to_guess)) do
         word_in_game[i] := '_';
 
     writeLn('Word loaded');
-    writeLn('Word to guess : ', word_to_guess);
+    { DEBUG writeLn('Word to guess : ', word_to_guess); }
     while keep_playing do
     begin
         displayHiddenWord(word_in_game);

@@ -10,7 +10,9 @@
 
 - [x] Check if letter wrote by user is in the word
 
-- [ ] Handle multiple letter in the same word
+- [x] Handle multiple letter in the same word
+
+- [x] Handle lose condition
 
 - [ ] Handle win condition
 
