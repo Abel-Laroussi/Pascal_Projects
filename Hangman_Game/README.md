@@ -16,8 +16,8 @@
 
 - [x] Handle win condition
 
-- [ ] Handle exception
-    - [ ] If the user propose anything but a letter
+- [~] Handle exception
+    - [x] If the user propose anything but a letter
     - [ ] If the letter has already been proposed
 
 ---

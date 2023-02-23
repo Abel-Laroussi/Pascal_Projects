@@ -47,23 +47,31 @@ procedure displayHiddenWord(word_in_game: string);
     end;
 
 procedure checkLetter(c: char; word_to_guess: string; var lives: integer; var word_in_game: string);
-    var word_size : integer;
-    var found : boolean;
-    begin
-        found := false;
-        word_size := Length(word_to_guess);
-        i := 1;
-        while (i <= word_size) do
-        begin
-            if word_to_guess[i] = c then
-            begin
-                word_in_game[i] := c;
-                found := true;
-            end;
-            i := i+1;
-        end;
+    var 
+        word_size : integer;
+        found : boolean;
+        character: char;
 
-        if not found then lives := lives - 1;
+    begin
+        character := LowerCase(c);
+        if( (character < 'a') or (character > 'z')) then writeLn('This is not a letter !')
+        else
+            begin
+                found := false;
+                word_size := Length(word_to_guess);
+                i := 1;
+                while (i <= word_size) do
+                begin
+                    if word_to_guess[i] = character then
+                    begin
+                        word_in_game[i] := character;
+                        found := true;
+                    end;
+                    i := i+1;
+                end;
+
+                if not found then lives := lives - 1;
+            end;
     end;
 
 function checkWin(word_in_game: string) : boolean;
@@ -93,6 +101,7 @@ begin
         word_in_game[i] := '_';
 
     writeLn('Word loaded');
+    close(f);
     { DEBUG writeLn('Word to guess : ', word_to_guess); }
     while keep_playing do
     begin
@@ -117,6 +126,5 @@ begin
         writeLn('You found the word "', word_to_guess, '" !');
     end;
 
-    close(f);
     readLn(); { PAUSE }
 end.
