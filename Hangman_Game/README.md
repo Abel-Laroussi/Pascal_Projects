@@ -6,9 +6,13 @@
 
 - [x] Turn word into a sequence of hidden letter
 
-- [ ] Set number of letters left
+- [x] Set number of letters left
 
-- [ ] Check if letter wrote by user is in the word
+- [x] Check if letter wrote by user is in the word
+
+- [ ] Handle multiple letter in the same word
+
+- [ ] Handle win condition
 
 - [ ] Handle exception
 
