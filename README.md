@@ -7,7 +7,7 @@ Multiple Pascal projets to discover this language
 
 - [x] Find the right number
 
-- [ ] **The Hangman's Game**
+- [x] The Hangman's Game
 
 ---
 
