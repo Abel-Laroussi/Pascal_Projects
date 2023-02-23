@@ -13,7 +13,9 @@ var
     character_proposition: char;
     lives: integer;
 
-const MAX_WORDS = 20;
+const 
+    MAX_WORDS = 20;
+    NB_TRY = 10;
 
 procedure initArray(filename: string; var nbWords: integer; var wordsArray: wordarray);
     var one_word: string;
@@ -44,7 +46,7 @@ procedure displayHiddenWord(word_in_game: string);
         writeLn();
     end;
 
-procedure checkLetter(c: char; word_to_guess: string; var keep_playing: boolean; var lives: integer; var word_in_game: string);
+procedure checkLetter(c: char; word_to_guess: string; var lives: integer; var word_in_game: string);
     var word_size : integer;
     var found : boolean;
     begin
@@ -62,13 +64,22 @@ procedure checkLetter(c: char; word_to_guess: string; var keep_playing: boolean;
         end;
 
         if not found then lives := lives - 1;
-
-        keep_playing := (lives > 0);
     end;
 
+function checkWin(word_in_game: string) : boolean;
+    var win : boolean;
+    begin
+        win := TRUE;
+        for i:=0 to (Length(word_in_game)) do
+            if (word_in_game[i] = '_') then
+                win := FALSE;
+        checkWin := win;
+    end;
+
+{ MAIN LOOP }
 begin
     keep_playing := TRUE;
-    lives := 10;
+    lives := NB_TRY;
     initArray('word_list.txt', nb_words, words);
     Randomize();
 {    for i:=0 to nb_words-1 do
@@ -85,13 +96,27 @@ begin
     { DEBUG writeLn('Word to guess : ', word_to_guess); }
     while keep_playing do
     begin
+        writeLn('============================');
         displayHiddenWord(word_in_game);
         write('Your proposition : ');
         readLn(character_proposition);
-        checkLetter(character_proposition, word_to_guess, keep_playing, lives, word_in_game);
+        checkLetter(character_proposition, word_to_guess, lives, word_in_game);
+        writeLn();
+        writeLn('You have ', lives, ' lives left.');
+        keep_playing := (lives > 0) and (not checkWin(word_in_game));
+    end;
+
+    if lives = 0 then
+        begin
+            writeLn('Game Over. You lost.');
+            writeLn('The word was "', word_to_guess, '".');
+        end
+    else
+    begin
+        writeLn('Congratulations !');
+        writeLn('You found the word "', word_to_guess, '" !');
     end;
 
     close(f);
+    readLn(); { PAUSE }
 end.
-
-// Faire 2 arrays, 1 qui contient le mot, 1 qui est son équivalent en '_' et keep_playing se met à false s'il n'y a plus aucun '_' dans le deuxième array
