@@ -1,0 +1,6 @@
+hello
+hangman
+computer
+everything
+pascal
+web
